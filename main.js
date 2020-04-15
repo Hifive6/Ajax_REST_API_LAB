@@ -97,4 +97,31 @@ createPost.on('click', function(){
 })
 
 //task 6
+let replacePost = $('#addButton6');
 
+replacePost.on('click', function(){
+    $.ajax({
+        method: 'PUT',
+        url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/comments/12',
+        data: {
+            postID: 55,
+            id: 15,
+            title: 'Replace the post',
+            body: 'This is the post where the post with an id of 12 is not 15. I think I am doing this right.'
+        }, 
+        complete: function(response){
+            console.log(response);
+            $('.listOne').empty();
+                let li = $('<br><li></li>');
+                let postedID = li.append(JSON.stringify(response));
+                console.log(postedID)
+                // li.append(postedID);
+                $('.listOne').append(postedID);
+            // Object.keys(response).forEach(function(post){
+            //     console.log(response[post].responseText)
+
+            // })
+            
+        }
+    })
+})
