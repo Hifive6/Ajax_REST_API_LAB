@@ -24,12 +24,12 @@ myList.on('click', function(){
 });
 
 //Task 2
-let postID = $('#addButton2');
+let getID = $('#addButton2');
 // let hideID = $('#deleteList2');
 
 
 
-postID.on('click', function(){
+getID.on('click', function(){
     $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts?id=10', function(response){
         $('.listOne').empty();
         // console.log(response);
@@ -56,9 +56,11 @@ commentID12.on('click', function(){
         })
     })
 })
-let postID2 = $('#addButton4')
 
-postID2.on('click', function(){
+//task 4
+let getID2 = $('#addButton4')
+
+getID2.on('click', function(){
     $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts?id=2', function(response){
         $('.listOne').empty();
         response.forEach(function(post){
@@ -71,3 +73,28 @@ postID2.on('click', function(){
         })
     })
 })
+
+//task 5
+let createPost = $('#addButton5');
+
+createPost.on('click', function(){
+    $.post('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts', {
+    // completed: false,
+        userID: 15,
+        id: 55,
+        title: 'This is the Post',
+        body: "This is the bestest post you have ever seen. I think this post may be my finest work. Wow what a thought. What a world, what a world, can't believe it"
+    }, function(response){
+        $('.listOne').empty();
+        // console.log(response);
+        let li = $('<br><li></li>');
+        let postedID = li.append(JSON.stringify(response.id));
+        console.log(postedID)
+        // li.append(postedID);
+        $('.listOne').append(postedID);
+
+    })   
+})
+
+//task 6
+
