@@ -111,9 +111,12 @@ replacePost.on('click', function(){
         }, 
         complete: function(response){
             console.log(response);
+            let postedOject = response.responseText;
+            console.log(postedOject);
             $('.listOne').empty();
+                
                 let li = $('<br><li></li>');
-                let postedID = li.append(JSON.stringify(response));
+                let postedID = li.append(postedOject);
                 console.log(postedID)
                 // li.append(postedID);
                 $('.listOne').append(postedID);
