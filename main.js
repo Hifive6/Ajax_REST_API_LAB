@@ -13,7 +13,7 @@ myList.on('click', function(){
         $('.listOne').empty();
         response.forEach(function(post){
             // $('.listOne').val('');
-            let li = $('<li></li>');
+            let li = $('<br><li></li>');
             let eachPost = li.append(JSON.stringify(post));
             // console.log(eachPost);
             // eachPost.append($('.listOne'));
@@ -33,7 +33,7 @@ postID.on('click', function(){
     $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts?id=10', function(response){
         $('.listOne').empty();
         // console.log(response);
-        let li = $('<li></li>');
+        let li = $('<br><li></li>');
         let userID = li.append(JSON.stringify(response));
         // console.log(userID);
         $('.listOne').append(userID);
@@ -44,8 +44,16 @@ postID.on('click', function(){
 let commentID12 = $('#addButton3');
 
 commentID12.on('click', function(){
-    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts?comments', function(response){
+    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/comments?id=12', function(response){
         $('.listOne').empty();
-        console.log(response);
+        response.forEach(function(post){
+            // $('.listOne').val('');
+            let li = $('<br><li></li>');
+            let eachPost = li.append(JSON.stringify(post));
+            // console.log(eachPost);
+            // eachPost.append($('.listOne'));
+            $('.listOne').append(eachPost);
+
+        })
     })
 })
