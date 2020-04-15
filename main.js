@@ -53,7 +53,21 @@ commentID12.on('click', function(){
             // console.log(eachPost);
             // eachPost.append($('.listOne'));
             $('.listOne').append(eachPost);
+        })
+    })
+})
+let postID2 = $('#addButton4')
 
+postID2.on('click', function(){
+    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts?id=2', function(response){
+        $('.listOne').empty();
+        response.forEach(function(post){
+            // $('.listOne').val('');
+            let li = $('<br><li></li>');
+            let eachPost = li.append(JSON.stringify(post));
+            // console.log(eachPost);
+            // eachPost.append($('.listOne'));
+            $('.listOne').append(eachPost);
         })
     })
 })
