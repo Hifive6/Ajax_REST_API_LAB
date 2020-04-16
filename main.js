@@ -128,3 +128,73 @@ replacePost.on('click', function(){
         }
     })
 })
+
+//task 7
+let updateID = $('#addButton7');
+
+updateID.on('click', function(){
+    $.ajax({
+        method: 'PATCH',
+        url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/comments/12',
+        data: {
+            name: 'Bob Smith is now the New Name'
+        },
+        complete: function(response){
+            // console.log(typeof response)
+            console.log(response.responseJSON.name);
+            $('.listOne').empty();
+            let updateName = response.responseJSON.name;
+            let li = $('<br><li></li>');
+            let postedID = li.append(updateName);
+            console.log(postedID)
+            
+            $('.listOne').append(postedID);
+        }
+    })
+})
+
+// task8
+
+let delete12 = $('#addButton8');
+
+delete12.on('click', function(){
+    $.ajax({
+        method: 'DELETE',
+        url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/comments/12',
+        complete: function(response){
+            console.log(response.statusText)
+        }
+    })
+})
+
+// task 9
+
+let listOfPost = $('#addButton9');
+
+listOfPost.on('click', function(){
+    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts?id=1', function(response){
+        // console.log(response);
+        $('.listOne').empty();
+        response.forEach(function(post){
+            let li = $('<br><li></li>');
+        // let postLink = $('<a></a>')
+            let eachPost = li.append(JSON.stringify(post));
+            // console.log(eachPost);
+            // eachPost.append($('.listOne'));
+            $('.listOne').append(eachPost);
+
+            $('li').on('click', function(){
+                $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/comments', function(response){
+                    console.log(response)
+                    console.log(response[1].name);
+                    $('.listOne').empty();
+                    let p = $('<br><p></p>');
+                    let eachComment = p.append(response[1].body);
+                    $('.listOne').append(eachComment);
+                    // console.log(eachComment);
+                })
+            })
+        })
+
+    })
+})
